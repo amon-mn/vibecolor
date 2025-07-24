@@ -16,7 +16,7 @@ Este é um projeto moderno configurado com Vite, React, TypeScript, Tailwind CSS
 
 ```bash
 # Clone o repositório
-git clone <url-do-repositorio>
+git clone https://github.com/amon-mn/vibecolor.git
 cd vibecolor
 
 # Instale as dependências
