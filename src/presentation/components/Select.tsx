@@ -6,7 +6,8 @@ export interface SelectOption<T = string> {
   value: T;
 }
 
-export interface SelectProps<T = string> extends React.SelectHTMLAttributes<HTMLSelectElement> {
+export interface SelectProps<T = string>
+  extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   error?: string;
   leftIcon?: React.ReactNode;
@@ -28,12 +29,17 @@ export function Select<T = string>({
   return (
     <div className="w-full">
       {label && (
-        <label htmlFor={selectId} className="block mb-1 font-medium text-gray-700">
+        <label
+          htmlFor={selectId}
+          className="block mb-1 font-medium text-gray-700"
+        >
           {label}
         </label>
       )}
       <div className={clsx('relative flex items-center', { 'mb-1': error })}>
-        {leftIcon && <span className="absolute left-3 text-gray-400">{leftIcon}</span>}
+        {leftIcon && (
+          <span className="absolute left-3 text-gray-400">{leftIcon}</span>
+        )}
         <select
           id={selectId}
           className={clsx(
@@ -55,7 +61,9 @@ export function Select<T = string>({
             </option>
           ))}
         </select>
-        {rightIcon && <span className="absolute right-3 text-gray-400">{rightIcon}</span>}
+        {rightIcon && (
+          <span className="absolute right-3 text-gray-400">{rightIcon}</span>
+        )}
       </div>
       {error && (
         <span id={`${selectId}-error`} className="text-xs text-red-600">
@@ -64,4 +72,4 @@ export function Select<T = string>({
       )}
     </div>
   );
-} 
+}

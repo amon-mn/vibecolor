@@ -24,10 +24,21 @@ export class GeneratePaletteUseCase {
 
     if (generationMethod === 'random') {
       colors = colorService.generatePalette(emotionOrStyle, numberOfColors);
-    } else if (generationMethod === 'harmonic' && options.baseColor && options.harmonyRule) {
-      colors = colorService.generateHarmonicPalette(options.baseColor, options.harmonyRule, numberOfColors);
+    } else if (
+      generationMethod === 'harmonic' &&
+      options.baseColor &&
+      options.harmonyRule
+    ) {
+      colors = colorService.generateHarmonicPalette(
+        options.baseColor,
+        options.harmonyRule,
+        numberOfColors
+      );
     } else if (generationMethod === 'fromImage' && options.imageUrl) {
-      colors = await colorService.extractColorsFromImage(options.imageUrl, numberOfColors);
+      colors = await colorService.extractColorsFromImage(
+        options.imageUrl,
+        numberOfColors
+      );
     } else {
       throw new Error('Parâmetros insuficientes para geração de paleta.');
     }
@@ -43,4 +54,4 @@ export class GeneratePaletteUseCase {
       updatedAt: now,
     };
   }
-} 
+}

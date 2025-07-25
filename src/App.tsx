@@ -46,15 +46,22 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-100 flex flex-col items-center py-8 px-2">
-      <h1 className="text-3xl font-bold mb-4 text-center">Gerador de Paleta de Cores</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center">
+        Gerador de Paleta de Cores
+      </h1>
       <form
         className="flex flex-col md:flex-row gap-4 items-center mb-6 w-full max-w-2xl"
-        onSubmit={e => { e.preventDefault(); handleGenerate(); }}
+        onSubmit={e => {
+          e.preventDefault();
+          handleGenerate();
+        }}
         aria-label="Formulário de geração de paleta"
       >
         <EmotionSelector value={emotion} onChange={setEmotion} />
         <div className="flex flex-col gap-2 w-full max-w-xs mx-auto">
-          <label htmlFor="num-colors" className="font-semibold text-gray-700">Nº de cores:</label>
+          <label htmlFor="num-colors" className="font-semibold text-gray-700">
+            Nº de cores:
+          </label>
           <input
             id="num-colors"
             type="number"
@@ -75,36 +82,44 @@ export default function App() {
         </button>
       </form>
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4 w-full max-w-md text-center" role="alert">
+        <div
+          className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4 w-full max-w-md text-center"
+          role="alert"
+        >
           {error}
         </div>
       )}
       <section className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {palette && palette.colors.map((color: any, idx: number) => (
-          <div
-            key={color.hex + idx}
-            className="relative group cursor-pointer"
-            tabIndex={0}
-            aria-label={`Copiar código ${color.hex}`}
-            onClick={() => handleCopyHex(color.hex)}
-            onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && handleCopyHex(color.hex)}
-            role="button"
-          >
-            <ColorCard {...color} />
-            {copiedHex === color.hex && (
-              <span
-                className="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded shadow animate-bounce z-10"
-                aria-live="assertive"
-                role="status"
-              >
-                Copiado!
-              </span>
-            )}
-          </div>
-        ))}
+        {palette &&
+          palette.colors.map((color: any, idx: number) => (
+            <div
+              key={color.hex + idx}
+              className="relative group cursor-pointer"
+              tabIndex={0}
+              aria-label={`Copiar código ${color.hex}`}
+              onClick={() => handleCopyHex(color.hex)}
+              onKeyDown={e =>
+                (e.key === 'Enter' || e.key === ' ') && handleCopyHex(color.hex)
+              }
+              role="button"
+            >
+              <ColorCard {...color} />
+              {copiedHex === color.hex && (
+                <span
+                  className="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded shadow animate-bounce z-10"
+                  aria-live="assertive"
+                  role="status"
+                >
+                  Copiado!
+                </span>
+              )}
+            </div>
+          ))}
       </section>
       {!palette && !loading && !error && (
-        <p className="text-gray-500 mt-8 text-center">Selecione uma emoção/estilo e gere sua paleta personalizada!</p>
+        <p className="text-gray-500 mt-8 text-center">
+          Selecione uma emoção/estilo e gere sua paleta personalizada!
+        </p>
       )}
       {loading && (
         <div className="flex flex-col items-center mt-8">

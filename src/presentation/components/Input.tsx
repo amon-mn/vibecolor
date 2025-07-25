@@ -1,7 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   leftIcon?: React.ReactNode;
@@ -14,12 +15,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={inputId} className="block mb-1 font-medium text-gray-700">
+          <label
+            htmlFor={inputId}
+            className="block mb-1 font-medium text-gray-700"
+          >
             {label}
           </label>
         )}
         <div className={clsx('relative flex items-center', { 'mb-1': error })}>
-          {leftIcon && <span className="absolute left-3 text-gray-400">{leftIcon}</span>}
+          {leftIcon && (
+            <span className="absolute left-3 text-gray-400">{leftIcon}</span>
+          )}
           <input
             id={inputId}
             ref={ref}
@@ -36,7 +42,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             aria-describedby={error ? `${inputId}-error` : undefined}
             {...props}
           />
-          {rightIcon && <span className="absolute right-3 text-gray-400">{rightIcon}</span>}
+          {rightIcon && (
+            <span className="absolute right-3 text-gray-400">{rightIcon}</span>
+          )}
         </div>
         {error && (
           <span id={`${inputId}-error`} className="text-xs text-red-600">
@@ -47,4 +55,4 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
-Input.displayName = 'Input'; 
+Input.displayName = 'Input';

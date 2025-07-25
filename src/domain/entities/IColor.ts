@@ -6,4 +6,4 @@ export interface IColor {
   contrastWhite: number;
   isAccessibleAA: boolean;
   isAccessibleAAA: boolean;
-} 
+}

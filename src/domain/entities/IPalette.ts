@@ -8,4 +8,4 @@ export interface IPalette {
   emotionOrStyle: string;
   createdAt: Date;
   updatedAt: Date;
-} 
+}

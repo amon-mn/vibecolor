@@ -1,6 +1,8 @@
 import { useState, useCallback } from 'react';
 
-export function useLoading<T extends (...args: any[]) => Promise<any>>(asyncFn: T) {
+export function useLoading<T extends (...args: any[]) => Promise<any>>(
+  asyncFn: T
+) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,4 +24,4 @@ export function useLoading<T extends (...args: any[]) => Promise<any>>(asyncFn: 
   );
 
   return { loading, error, run: wrapped };
-} 
+}

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '../components/Button';
-import { ColorDisplayCard } from '../components/ColorDisplayCard';
 import { GetPaletteByIdUseCase } from '../../application/usecases/GetPaletteByIdUseCase';
 import { LocalStoragePaletteRepository } from '../../infrastructure/LocalStoragePaletteRepository';
 import type { IPalette } from '../../domain/entities/IPalette';
+import { PalettePreviewCard } from '../components/PalettePreviewCard';
 
 export default function PaletteDetailsPage() {
   const { id } = useParams();
@@ -13,7 +13,10 @@ export default function PaletteDetailsPage() {
 
   useEffect(() => {
     if (id) {
-      GetPaletteByIdUseCase.execute(new LocalStoragePaletteRepository(), id).then(setPalette);
+      GetPaletteByIdUseCase.execute(
+        new LocalStoragePaletteRepository(),
+        id
+      ).then(setPalette);
     }
   }, [id]);
 
@@ -24,13 +27,22 @@ export default function PaletteDetailsPage() {
       <h1 className="text-2xl font-bold mb-4">{palette.name}</h1>
       <div className="mb-2 text-gray-500">{palette.description}</div>
       <div className="mb-2 text-xs text-gray-400">{palette.emotionOrStyle}</div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-6">
-        {palette.colors.map((color, idx) => (
-          <ColorDisplayCard key={color.hex + idx} color={color} />
-        ))}
+      <div className="mb-6">
+        <PalettePreviewCard colors={palette.colors} />
       </div>
-      <Button variant="secondary" onClick={() => navigate(-1)} className="mr-2">Voltar</Button>
-      <Button variant="primary" onClick={() => navigate(`/paleta/${palette.id}/editar`)}>Editar</Button>
+      <Button
+        variant="secondary"
+        onClick={() => navigate('/paletas')}
+        className="mr-2"
+      >
+        Voltar
+      </Button>
+      <Button
+        variant="primary"
+        onClick={() => navigate(`/paleta/${palette.id}/editar`)}
+      >
+        Editar
+      </Button>
     </main>
   );
-} 
+}

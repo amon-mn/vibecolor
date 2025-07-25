@@ -5,4 +5,4 @@ export interface IPaletteInput {
   description?: string;
   colors: IColor[];
   emotionOrStyle: string;
-} 
+}

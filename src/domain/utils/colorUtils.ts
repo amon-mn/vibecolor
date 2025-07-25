@@ -1,13 +1,21 @@
 // Gera uma cor hexadecimal aleatória
 export function randomHexColor(): string {
-  return '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0');
+  return (
+    '#' +
+    Math.floor(Math.random() * 0xffffff)
+      .toString(16)
+      .padStart(6, '0')
+  );
 }
 
 // Converte um código hexadecimal para RGB
 export function hexToRgb(hex: string): { r: number; g: number; b: number } {
   let sanitized = hex.replace('#', '');
   if (sanitized.length === 3) {
-    sanitized = sanitized.split('').map((c) => c + c).join('');
+    sanitized = sanitized
+      .split('')
+      .map(c => c + c)
+      .join('');
   }
   const num = parseInt(sanitized, 16);
   return {
@@ -18,9 +26,17 @@ export function hexToRgb(hex: string): { r: number; g: number; b: number } {
 }
 
 // Calcula a luminância de uma cor RGB
-export function luminance({ r, g, b }: { r: number; g: number; b: number }): number {
+export function luminance({
+  r,
+  g,
+  b,
+}: {
+  r: number;
+  g: number;
+  b: number;
+}): number {
   // Conversão para sRGB
-  const srgb = [r, g, b].map((v) => {
+  const srgb = [r, g, b].map(v => {
     v = v / 255;
     return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
   });
@@ -40,4 +56,4 @@ export function contrastRatio(
   const brightest = Math.max(lumA, lumB);
   const darkest = Math.min(lumA, lumB);
   return (brightest + 0.05) / (darkest + 0.05);
-} 
+}

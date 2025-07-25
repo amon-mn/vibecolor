@@ -18,14 +18,13 @@ function randomHex(): string {
 function hexToRgb(hex: string): [number, number, number] {
   let sanitized = hex.replace('#', '');
   if (sanitized.length === 3) {
-    sanitized = sanitized.split('').map((c) => c + c).join('');
+    sanitized = sanitized
+      .split('')
+      .map(c => c + c)
+      .join('');
   }
   const num = parseInt(sanitized, 16);
-  return [
-    (num >> 16) & 255,
-    (num >> 8) & 255,
-    num & 255,
-  ];
+  return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
 }
 
 export class ColorGeneratorService implements IColorGeneratorService {
@@ -33,10 +32,22 @@ export class ColorGeneratorService implements IColorGeneratorService {
     const hex = randomHex();
     const rgb = hexToRgb(hex);
     const luminance = ContrastCheckerService.calculateLuminance(rgb);
-    const contrastBlack = ContrastCheckerService.calculateContrastRatio(luminance, 0);
-    const contrastWhite = ContrastCheckerService.calculateContrastRatio(luminance, 1);
-    const isAccessibleAA = ContrastCheckerService.checkAccessibility(Math.max(contrastBlack, contrastWhite), 'AA');
-    const isAccessibleAAA = ContrastCheckerService.checkAccessibility(Math.max(contrastBlack, contrastWhite), 'AAA');
+    const contrastBlack = ContrastCheckerService.calculateContrastRatio(
+      luminance,
+      0
+    );
+    const contrastWhite = ContrastCheckerService.calculateContrastRatio(
+      luminance,
+      1
+    );
+    const isAccessibleAA = ContrastCheckerService.checkAccessibility(
+      Math.max(contrastBlack, contrastWhite),
+      'AA'
+    );
+    const isAccessibleAAA = ContrastCheckerService.checkAccessibility(
+      Math.max(contrastBlack, contrastWhite),
+      'AAA'
+    );
     return {
       hex,
       rgb,
@@ -49,7 +60,9 @@ export class ColorGeneratorService implements IColorGeneratorService {
   }
 
   generatePalette(emotionOrStyle: string, numberOfColors: number): IColor[] {
-    return Array.from({ length: numberOfColors }, () => this.generateRandomColor());
+    return Array.from({ length: numberOfColors }, () =>
+      this.generateRandomColor()
+    );
   }
 
   generateHarmonicPalette(
@@ -60,17 +73,25 @@ export class ColorGeneratorService implements IColorGeneratorService {
     if (harmonyRule === 'complementary') {
       const [r, g, b] = baseColor.rgb;
       const compRgb: [number, number, number] = [255 - r, 255 - g, 255 - b];
-      const compHex = '#' + compRgb.map((v) => v.toString(16).padStart(2, '0')).join('');
-      return [baseColor, this.generateRandomColor(), {
-        ...this.generateRandomColor(),
-        rgb: compRgb,
-        hex: compHex,
-      }].slice(0, numberOfColors);
+      const compHex =
+        '#' + compRgb.map(v => v.toString(16).padStart(2, '0')).join('');
+      return [
+        baseColor,
+        this.generateRandomColor(),
+        {
+          ...this.generateRandomColor(),
+          rgb: compRgb,
+          hex: compHex,
+        },
+      ].slice(0, numberOfColors);
     }
     return this.generatePalette('', numberOfColors);
   }
 
-  extractColorsFromImage(imageUrl: string, numberOfColors: number): Promise<IColor[]> {
+  extractColorsFromImage(
+    imageUrl: string,
+    numberOfColors: number
+  ): Promise<IColor[]> {
     return Promise.resolve(this.generatePalette('image', numberOfColors));
   }
-} 
+}

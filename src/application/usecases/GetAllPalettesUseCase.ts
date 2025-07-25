@@ -5,4 +5,4 @@ export class GetAllPalettesUseCase {
   static async execute(repo: IPaletteRepository): Promise<IPalette[]> {
     return await repo.getAll();
   }
-} 
+}

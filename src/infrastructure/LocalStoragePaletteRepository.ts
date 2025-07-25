@@ -58,4 +58,9 @@ export class LocalStoragePaletteRepository implements IPaletteRepository {
     setStoredPalettes(palettes);
     return simulateNetwork(undefined);
   }
-} 
+
+  async clearAll(): Promise<void> {
+    setStoredPalettes([]);
+    return simulateNetwork(undefined);
+  }
+}

@@ -5,4 +5,4 @@ export function useError() {
   const throwError = useCallback((msg: string) => setError(msg), []);
   const clearError = useCallback(() => setError(null), []);
   return { error, throwError, clearError };
-} 
+}

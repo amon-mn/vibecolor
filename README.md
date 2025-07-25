@@ -2,6 +2,28 @@
 
 Este é um projeto moderno configurado com Vite, React, TypeScript, Tailwind CSS, ESLint e Prettier.
 
+## ✨ Funcionalidades Principais
+
+- **Verificador de contraste de cores** com interface moderna, preview visual e ajuste inteligente de contraste (inclui menu de correção com sugestões automáticas).
+- **Geração de paletas de cores** baseada em emoção/estilo, com edição visual, preview e salvamento local.
+- **Edição de paletas**: adicione, remova e edite cores, nome e descrição, com interface intuitiva.
+- **Ajuste inteligente de contraste**: menu dropdown com opções para melhorar contraste do texto, fundo ou ambos, sugerindo tons similares e maximizando a acessibilidade.
+- **Acessibilidade**: segue as diretrizes WCAG para contraste, com simulação de daltonismo e feedback visual.
+- **UX aprimorada**: navegação fluida, feedback visual, toasts de sucesso/erro e responsividade.
+
+## 🖼️ Exemplos de Uso
+
+### Verificador de Contraste
+- Compare cores de texto e fundo.
+- Veja a nota de contraste, estrelas, avaliação AA/AAA e preview de citação.
+- Use o menu "Clique para corrigir" para sugestões automáticas de contraste.
+
+### Geração e Edição de Paletas
+- Gere paletas por emoção/estilo (ex: Calma, Energética, Vintage).
+- Edite nome, descrição e cores da paleta.
+- Adicione novas cores com base em emoção/estilo.
+- Salve e visualize suas paletas favoritas.
+
 ## 🚀 Tecnologias Utilizadas
 
 - **Vite** - Build tool e dev server
@@ -93,6 +115,15 @@ vibecolor/
 ├── tsconfig.json     # Configuração do TypeScript
 └── vite.config.ts    # Configuração do Vite
 ```
+
+## 🔥 Diferenciais e Melhorias Recentes
+
+- Interface inspirada em ferramentas modernas de acessibilidade e design.
+- Menu de correção de contraste com opções inteligentes e ajuste automático de tons.
+- Feedback visual aprimorado para contraste ruim, regular, bom e excelente.
+- Preview de citações de filósofos famosos, alternando a cada acesso.
+- Navegação aprimorada: após editar/salvar, o histórico é limpo para evitar loops.
+- Responsividade e acessibilidade em todas as telas.
 
 ## 🚀 Deploy
 

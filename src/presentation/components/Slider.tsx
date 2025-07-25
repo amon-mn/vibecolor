@@ -1,7 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export interface SliderProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface SliderProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   min?: number;
@@ -27,7 +28,10 @@ export const Slider: React.FC<SliderProps> = ({
   return (
     <div className="w-full">
       {label && (
-        <label htmlFor={sliderId} className="block mb-1 font-medium text-gray-700">
+        <label
+          htmlFor={sliderId}
+          className="block mb-1 font-medium text-gray-700"
+        >
           {label}
         </label>
       )}
@@ -63,4 +67,4 @@ export const Slider: React.FC<SliderProps> = ({
       )}
     </div>
   );
-}; 
+};

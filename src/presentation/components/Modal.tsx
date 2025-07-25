@@ -9,7 +9,13 @@ export interface ModalProps {
   className?: string;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, className }) => {
+export const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+  className,
+}) => {
   useEffect(() => {
     if (!isOpen) return;
     const handleKey = (e: KeyboardEvent) => {
@@ -29,7 +35,10 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, 
       onClick={onClose}
     >
       <div
-        className={clsx('bg-white rounded-lg shadow-lg p-6 max-w-lg w-full relative', className)}
+        className={clsx(
+          'bg-white rounded-lg shadow-lg p-6 max-w-lg w-full relative',
+          className
+        )}
         onClick={e => e.stopPropagation()}
         role="document"
       >
@@ -45,4 +54,4 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, 
       </div>
     </div>
   );
-}; 
+};
